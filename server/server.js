@@ -11,7 +11,8 @@ const app = express();
 
 app.use(
   session({
-    secret: process.env.SESSION_SECRET,
+    // secret: process.env.SESSION_SECRET,
+    secret: 'iaheoiaejdhgejjedhofisdihagrafeh',
     resave: false,
     saveUninitialized: true
   })
@@ -21,6 +22,9 @@ app.use(function(req, res, next) {
   res.locals.session = req.session;
   next();
 });
+
+app.use('/api', require('./api'))
+app.use('/auth', require('./auth'))
 
 const oauth2 = require("simple-oauth2").create({
   // The oauth endpoints are all at WWW.ravelry.com
@@ -98,6 +102,6 @@ app.get("/callback", (req, res) => {
 });
 
 // listen for requests :)
-const listener = app.listen(process.env.PORT, function() {
+const listener = app.listen(process.env.PORT || 8080, function() {
   console.log("Listening on port " + listener.address().port);
 });
