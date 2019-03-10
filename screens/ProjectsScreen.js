@@ -1,22 +1,42 @@
 import React from 'react';
-import { ScrollView, StyleSheet, Button } from 'react-native';
-import { ImagePicker } from 'expo';
+import { ScrollView, StyleSheet, Button, Text, FlatList, View } from 'react-native';
 
 export default class ProjectsScreen extends React.Component {
   static navigationOptions = {
     title: 'Projects',
   };
 
-  state = {
-    hasCameraPermission: null
-  };
-
   render() {
     return (
       <ScrollView style={styles.container}>
-        {/* Go ahead and delete ExpoLinksView and replace it with your
-           * content, we just wanted to provide you with some helpful links */}
-        <Button onPress={() => {this.props.navigation.navigate('Camera')}} title="Take a picture"/>
+        <Text>My Projects:</Text>
+        <FlatList
+          data={[
+            {key: 'Hat'},
+            {key: 'Mittens'},
+            {key: 'Onesie'},
+            {key: 'Scarf'},
+          ]}
+          renderItem={({item}) =>
+            <View>
+              <Text style={styles.item}>{item.key}</Text>
+              <Button title="Go to Project" onPress={() => {
+                this.props.navigation.navigate('Project', {
+                // photo: '',
+                photos: [],
+                name: item.key,
+                pattern: '',
+                craft: '',
+                madeFor: '',
+                tags: [],
+                yarn: '',
+                colorway: '',
+                colorFamily: '',
+                notes: '',
+              })}}/>
+            </View>}
+        />
+        {/* <Button onPress={() => {this.props.navigation.navigate('Camera')}} title="Add a picture"/> */}
       </ScrollView>
     );
   }
@@ -27,5 +47,10 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingTop: 15,
     backgroundColor: '#fff',
+  },
+  item: {
+    padding: 10,
+    fontSize: 18,
+    height: 44,
   },
 });

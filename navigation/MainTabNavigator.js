@@ -3,7 +3,7 @@ import { Platform, AsyncStorage } from 'react-native';
 import { createStackNavigator, createBottomTabNavigator } from 'react-navigation';
 
 import TabBarIcon from '../components/TabBarIcon';
-import HomeScreen from '../screens/HomeScreen';
+import HomeScreen from '../screens/AccountScreen';
 import ProjectsScreen from '../screens/ProjectsScreen';
 import LoginScreen from '../screens/LoginScreen';
 import AboutScreen from '../screens/AboutScreen';
