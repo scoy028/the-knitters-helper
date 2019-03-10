@@ -1,9 +1,9 @@
 {
   "devToolsPort": 19002,
-  "expoServerPort": 19000,
-  "packagerPort": 19001,
-  "packagerPid": 45778,
+  "expoServerPort": null,
+  "packagerPort": null,
+  "packagerPid": null,
   "expoServerNgrokUrl": "https://ue-nrg.anonymous.theknittershelper.exp.direct",
   "packagerNgrokUrl": "https://packager.ue-nrg.anonymous.theknittershelper.exp.direct",
-  "ngrokPid": 45790
+  "ngrokPid": 53332
 }

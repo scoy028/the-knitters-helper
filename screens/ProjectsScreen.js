@@ -1,5 +1,6 @@
 import React from 'react';
 import { ScrollView, StyleSheet, Button } from 'react-native';
+import { ImagePicker } from 'expo';
 
 export default class ProjectsScreen extends React.Component {
   static navigationOptions = {
