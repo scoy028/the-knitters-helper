@@ -1,10 +1,13 @@
 import React from 'react';
-import { ScrollView, StyleSheet, Button, Text, Image } from 'react-native';
+import { ScrollView, StyleSheet, Button, Image, View, TouchableOpacity, Text } from 'react-native';
+import { ImagePicker, Permissions } from 'expo';
+import { MonoText } from '../components/StyledText';
 
 export default class ProjectScreen extends React.Component {
   state = {
-    photo: null,
-    photos: [],
+    image: null,
+    hasCameraPermission: null,
+    hasCameraRollPermission: null,
   }
 
   static navigationOptions = {
@@ -13,6 +16,9 @@ export default class ProjectScreen extends React.Component {
 
   render() {
     const { navigation } = this.props
+    const { image } = this.state;
+    const { hasCameraPermission } = this.state;
+
     // const photo = navigation.getParam('photo', '')
     const photos = navigation.getParam('photos', ['N/A'])
     const name = navigation.getParam('name', 'N/A')
@@ -25,32 +31,37 @@ export default class ProjectScreen extends React.Component {
     const colorFamily = navigation.getParam('colorFamily', 'N/A')
     const notes = navigation.getParam('notes', 'N/A')
 
-    console.log(name)
-    return (
-      <ScrollView style={styles.container}>
-        <Text style={styles.item}>Photos</Text>
-        {/* <Image source={{ uri: photo }} style={{ width: 200, height: 200 }} /> */}
-        <Text>{photos}</Text>
-        <Button onPress={() => {navigation.navigate('Camera')}} title="Add a picture"/>
-        <Text style={styles.item}>Project Info</Text>
-        <Text>Name: {name}</Text>
-        <Text>Pattern: {pattern}</Text>
-        <Text>Craft: {craft}</Text>
-        <Text>Made For: {madeFor}</Text>
-        <Text>Tags: {tags}</Text>
-        <Text style={styles.item}>Needles and Yarn</Text>
-        <Text>Yarn: {yarn}</Text>
-        <Text>Colorway: {colorway}</Text>
-        <Text>Color Family: {colorFamily}</Text>
-        <Text style={styles.item}>Notes</Text>
-        <Text>{notes}</Text>
-        <Button
-            title="Go back"
-            onPress={() => navigation.navigate('Projects')}
-        />
-      </ScrollView>
-    );
-  }
+    // if (hasCameraPermission === null) {
+    //   return <View />;
+    // } else if (hasCameraPermission === false) {
+    //   return <Text>No access to camera</Text>;
+    // } else {
+      return (
+        <ScrollView style={styles.container}>
+          <MonoText style={styles.item}>Photos</MonoText>
+          {/* image && <Image source={{ uri: photo }} style={{ width: 200, height: 200 }} /> */}
+          <MonoText>{photos}</MonoText>
+          <Button onPress={() => {navigation.navigate('Camera')}} title="Add a picture"/>
+          <MonoText style={styles.item}>Project Info</MonoText>
+          <MonoText>Name: {name}</MonoText>
+          <MonoText>Pattern: {pattern}</MonoText>
+          <MonoText>Craft: {craft}</MonoText>
+          <MonoText>Made For: {madeFor}</MonoText>
+          <MonoText>Tags: {tags}</MonoText>
+          <MonoText style={styles.item}>Needles and Yarn</MonoText>
+          <MonoText>Yarn: {yarn}</MonoText>
+          <MonoText>Colorway: {colorway}</MonoText>
+          <MonoText>Color Family: {colorFamily}</MonoText>
+          <MonoText style={styles.item}>Notes</MonoText>
+          <MonoText>{notes}</MonoText>
+          <Button
+              title="Go back"
+              onPress={() => navigation.navigate('Projects')}
+          />
+        </ScrollView>
+      );
+    }
+  // }
 }
 
 const styles = StyleSheet.create({

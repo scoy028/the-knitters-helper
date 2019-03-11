@@ -36,7 +36,6 @@ export default class ProjectsScreen extends React.Component {
               })}}/>
             </View>}
         />
-        {/* <Button onPress={() => {this.props.navigation.navigate('Camera')}} title="Add a picture"/> */}
       </ScrollView>
     );
   }

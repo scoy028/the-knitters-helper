@@ -3,7 +3,7 @@ import { Platform, AsyncStorage } from 'react-native';
 import { createStackNavigator, createBottomTabNavigator } from 'react-navigation';
 
 import TabBarIcon from '../components/TabBarIcon';
-import HomeScreen from '../screens/AccountScreen';
+import AccountScreen from '../screens/AccountScreen';
 import ProjectsScreen from '../screens/ProjectsScreen';
 import LoginScreen from '../screens/LoginScreen';
 import AboutScreen from '../screens/AboutScreen';
@@ -23,11 +23,11 @@ LogOutStack.navigationOptions = {
   ),
 };
 
-const HomeStack = createStackNavigator({
-  Home: HomeScreen,
+const AccountStack = createStackNavigator({
+  Account: AccountScreen,
 });
 
-HomeStack.navigationOptions = {
+AccountStack.navigationOptions = {
   tabBarLabel: 'My Account',
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
@@ -70,7 +70,7 @@ AboutStack.navigationOptions = {
 };
 
 export default createBottomTabNavigator({
-  HomeStack,
+  AccountStack,
   AboutStack,
   ProjectsStack,
   LogOutStack,
