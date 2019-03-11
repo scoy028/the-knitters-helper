@@ -2,9 +2,16 @@ import React from 'react';
 import { ScrollView, StyleSheet, Button, Text, FlatList, View } from 'react-native';
 
 export default class ProjectsScreen extends React.Component {
+  constructor() {
+    super()
+  }
   static navigationOptions = {
     title: 'Projects',
   };
+
+  componenetDidMount() {
+    
+  }
 
   render() {
     return (

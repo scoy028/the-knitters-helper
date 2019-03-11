@@ -5,6 +5,8 @@ const randomstring = require("randomstring");
 const request = require("request");
 const session = require("express-session");
 const app = express();
+const https = require("https");
+const fs = require("fs");
 
 // Session for storing the token for future use
 // TODO: refresh if it is close to expiring
@@ -105,3 +107,15 @@ app.get("/callback", (req, res) => {
 const listener = app.listen(process.env.PORT || 8080, function() {
   console.log("Listening on port " + listener.address().port);
 });
+
+const options = {
+  hostname: "localhost",
+  key: fs.readFileSync("ssl/localhost.key"),
+  cert: fs.readFileSync("ssl/localhost.crt")
+ };
+ https
+  .createServer(options, (req, res) => {
+   res.writeHead(200);
+   res.end("hello world\n");
+  })
+  .listen(8888);
