@@ -1,40 +1,48 @@
 import React from 'react';
 import { ScrollView, StyleSheet, Button, Text, FlatList, View } from 'react-native';
+import { connect } from 'react-redux';
+import { listProjects } from './reducer';
 
-export default class ProjectsScreen extends React.Component {
+class ProjectsScreen extends React.Component {
   static navigationOptions = {
     title: 'Projects',
   };
+
+  componentDidMount() {
+    this.props.listProjects('scoy028');
+  }
+
+  renderItem = ({ item }) => (
+    <View style={styles.item}>
+      <Text>{item.name}</Text>
+    </View>
+  );
 
   render() {
     return (
       <ScrollView style={styles.container}>
         <Text>My Projects:</Text>
         <FlatList
-          data={[
-            {key: 'Hat'},
-            {key: 'Mittens'},
-            {key: 'Onesie'},
-            {key: 'Scarf'},
-          ]}
-          renderItem={({item}) =>
-            <View>
-              <Text style={styles.item}>{item.key}</Text>
-              <Button title="Go to Project" onPress={() => {
-                this.props.navigation.navigate('Project', {
-                // photo: '',
-                photos: [],
-                name: item.key,
-                pattern: '',
-                craft: '',
-                madeFor: '',
-                tags: [],
-                yarn: '',
-                colorway: '',
-                colorFamily: '',
-                notes: '',
-              })}}/>
-            </View>}
+          data={projects}
+          // renderItem={({item}) =>
+          //   <View>
+          //     <Text style={styles.item}>{item.key}</Text>
+          //     <Button title="Go to Project" onPress={() => {
+          //       this.props.navigation.navigate('Project', {
+          //       // photo: '',
+          //       photos: [],
+          //       name: item.key,
+          //       pattern: '',
+          //       craft: '',
+          //       madeFor: '',
+          //       tags: [],
+          //       yarn: '',
+          //       colorway: '',
+          //       colorFamily: '',
+          //       notes: '',
+          //     })}}/>
+          //   </View>}
+          renderItem={this.renderItem}
         />
         {/* <Button onPress={() => {this.props.navigation.navigate('Camera')}} title="Add a picture"/> */}
       </ScrollView>
@@ -54,3 +62,16 @@ const styles = StyleSheet.create({
     height: 44,
   },
 });
+
+const mapStateToProps = state => {
+  let storedProjects = state.projects.map(project => ({ key: project.id, ...project }));
+  return {
+    projects: storedProjects
+  };
+};
+
+const mapDispatchToProps = {
+  listProjects
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(ProjectsScreen);
