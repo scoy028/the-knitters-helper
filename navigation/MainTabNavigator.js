@@ -7,6 +7,7 @@ import AccountScreen from '../screens/AccountScreen';
 import ProjectsScreen from '../screens/ProjectsScreen';
 import LoginScreen from '../screens/LoginScreen';
 import AboutScreen from '../screens/AboutScreen';
+import ProjectScreen from '../screens/ProjectScreen';
 
 const LogOutStack = createStackNavigator({
   Login: LoginScreen,
@@ -43,6 +44,7 @@ AccountStack.navigationOptions = {
 
 const ProjectsStack = createStackNavigator({
   Projects: ProjectsScreen,
+  Project: ProjectScreen,
 });
 
 ProjectsStack.navigationOptions = {

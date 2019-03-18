@@ -25,14 +25,14 @@ export default class ProjectsScreen extends React.Component {
                 // photo: '',
                 photos: [],
                 name: item.key,
-                pattern: '',
-                craft: '',
-                madeFor: '',
+                pattern: 'Pattern One',
+                craft: 'Knitting',
+                madeFor: 'Mom',
                 tags: [],
-                yarn: '',
-                colorway: '',
-                colorFamily: '',
-                notes: '',
+                yarn: 'Quince & Co.',
+                colorway: 'Birch',
+                colorFamily: 'Gray',
+                notes: 'Soft and luxurious!',
               })}}/>
             </View>}
         />

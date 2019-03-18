@@ -10,10 +10,10 @@
 //       hasCameraPermission: null,
 //       hasCameraRollPermission: null,
 //       type: Camera.Constants.Type.back,
-//       photo: null,
+//       image: null,
 //     };
-//     this.takePicture = this.takePicture.bind(this)
-//     this.uploadPicture = this.uploadPicture.bind(this)
+//     // this.takePicture = this.takePicture.bind(this)
+//     // this.uploadPicture = this.uploadPicture.bind(this)
 //   }
 
 //   async componentDidMount() {
@@ -94,6 +94,8 @@
 //                 }}
 //                 onPress={() => {
 //                   this.takePicture
+//                   this.props.navigation.navigate('Project', {imageFromCamera: this.state.image})
+//                   console.log(this.state.image)
 //                 }}>
 //                 <Text style={{ fontSize: 18, marginBottom: 10, color: 'white' }}>
 //                   {' '}Take Picture{' '}</Text>
@@ -105,6 +107,7 @@
 //                 }}
 //                 onPress={() => {
 //                   this.uploadPicture
+//                   this.props.navigation.navigate('Project', {imageFromCamera: this.state.image})
 //                 }}>
 //                 <Text style={{ fontSize: 18, marginBottom: 10, color: 'white' }}>
 //                   {' '}Upload Picture{' '}</Text>
@@ -115,10 +118,10 @@
 //             title="Go back"
 //             onPress={() => this.props.navigation.navigate('Projects')}
 //           />
-//           <Button
+//           {/* <Button
 //             title="Pick an image from camera roll"
-//             onPress={this.pickImage}
-//           />
+//             onPress={this.uploadPicture}
+//           /> */}
 //           {image &&
 //           <Image source={{ uri: image }} style={{ width: 200, height: 200 }} />}
 //         </View>

@@ -16,6 +16,6 @@ export default createAppContainer(createSwitchNavigator({
   Camera: CameraNavigator,
   Project: ProjectNavigator,
 }, {
-  initialRouteName: 'AuthLoading'
+  initialRouteName: 'Auth'
 }
 ));

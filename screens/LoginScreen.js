@@ -1,5 +1,5 @@
 import React from 'react';
-import { ScrollView, StyleSheet, TextInput, Button, AsyncStorage } from 'react-native';
+import { ScrollView, StyleSheet, TextInput, Button, AsyncStorage, View, Image } from 'react-native';
 
 export default class LinksScreen extends React.Component {
   constructor(props) {
@@ -15,13 +15,19 @@ export default class LinksScreen extends React.Component {
   render() {
     return (
       <ScrollView style={styles.container}>
+        <View style={styles.welcomeContainer}>
+          <Image
+            source={require('../assets/images/icon.png')}
+            style={styles.welcomeImage}
+          />
+        </View>
         <TextInput style={styles.input} placeholder="Username" onChangeText={(text) => this.setState({username: text})} />
         <TextInput style={styles.input} placeholder="Password" onChangeText={(text) => this.setState({password: text})} />
         <Button
             title="Login"
             onPress={async() => {
               await AsyncStorage.setItem('userToken', 'abc')
-              this.props.navigation.navigate('Home')
+              this.props.navigation.navigate('Main')
             }}
           />
       </ScrollView>
@@ -37,5 +43,18 @@ const styles = StyleSheet.create({
   },
   input: {
     textAlign: 'center'
-  }
+  },
+  welcomeContainer: {
+    alignItems: 'center',
+    marginTop: 10,
+    marginBottom: 20,
+  },
+  welcomeImage: {
+    width: 100,
+    height: 100,
+    resizeMode: 'contain',
+    alignItems: 'center',
+    marginTop: 3,
+    marginLeft: -10,
+  },
 });
