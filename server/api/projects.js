@@ -2,7 +2,7 @@ const router = require('express').Router()
 module.exports = router
 
 //shows project list for specific user
-router.get('/:userName/list.json', async (req, res, next) => {
+router.get('/:userName/list', async (req, res, next) => {
   try {
     const userName = req.params.userName
     // console.log(
@@ -15,7 +15,7 @@ router.get('/:userName/list.json', async (req, res, next) => {
 })
 
 //shows project details for specific project
-router.get('/:userName/:id.json', async (req, res, next) => {
+router.get('/:userName/:id', async (req, res, next) => {
   try {
     const userName = req.params.userName
     const id = req.params.id
@@ -29,7 +29,7 @@ router.get('/:userName/:id.json', async (req, res, next) => {
 })
 
 //add a photo to a specific project
-router.post('/:userName/:id/create_photo.json', async (req, res, next) => {
+router.post('/:userName/:id/create_photo', async (req, res, next) => {
   try {
     const userName = req.params.userName
     const id = req.params.id

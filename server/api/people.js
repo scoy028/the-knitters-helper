@@ -2,7 +2,7 @@ const router = require('express').Router()
 module.exports = router
 
 //shows specific user
-router.get('/:id.json', async (req, res, next) => {
+router.get('/:id', async (req, res, next) => {
   try {
     const id = req.params.id
     // console.log(

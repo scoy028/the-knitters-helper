@@ -1,5 +1,5 @@
 import React from 'react';
-import { ScrollView, StyleSheet, Button, Text, FlatList, View } from 'react-native';
+import { ScrollView, StyleSheet, Button, Text, FlatList, View, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
 import { listProjects } from './reducer';
 
@@ -10,12 +10,17 @@ class ProjectsScreen extends React.Component {
 
   componentDidMount() {
     this.props.listProjects('scoy028');
-  }
+  };
 
   renderItem = ({ item }) => (
-    <View style={styles.item}>
+    <TouchableOpacity
+      style={styles.item}
+      onPress={() =>
+        this.props.navigation.navigate('ProjectScreen', { name: item.name })
+      }
+    >
       <Text>{item.name}</Text>
-    </View>
+    </TouchableOpacity>
   );
 
   render() {

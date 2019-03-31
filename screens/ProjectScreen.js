@@ -1,7 +1,14 @@
 import React from 'react';
 import { ScrollView, StyleSheet, Button, Text, Image } from 'react-native';
+import { connect } from 'react-redux';
+import { getProjectDetail } from '../reducer';
 
 export default class ProjectScreen extends React.Component {
+  componentDidMount() {
+    const { name } = this.props.navigation.state.params;
+    this.props.getProjectDetail('scoy028', name);
+  }
+
   state = {
     photo: null,
     photos: [],
@@ -12,7 +19,9 @@ export default class ProjectScreen extends React.Component {
   };
 
   render() {
-    const { navigation } = this.props
+    const { projectInfo, loadingInfo, navigation } = this.props;
+    if (loadingInfo) return <Text>Loading...</Text>;
+
     // const photo = navigation.getParam('photo', '')
     const photos = navigation.getParam('photos', ['N/A'])
     const name = navigation.getParam('name', 'N/A')
@@ -65,3 +74,14 @@ const styles = StyleSheet.create({
     height: 44,
   },
 });
+
+const mapStateToProps = ({ projectInfo, loadingInfo }) => ({
+  projectInfo,
+  loadingInfo
+});
+
+const mapDispatchToProps = {
+  getProjectDetail
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(ProjectScreen);
