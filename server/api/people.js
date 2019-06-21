@@ -2,9 +2,10 @@ const router = require('express').Router()
 module.exports = router
 
 //shows specific user
-router.get('/:id', async (req, res, next) => {
+router.get('/:userId', async (req, res, next) => {
   try {
-    const id = req.params.id
+    const userId = req.params.userId
+    
     // console.log(
     //   'req.session.passport.user in order get route: ',
     //   req.session.passport.user

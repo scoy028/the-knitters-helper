@@ -1,53 +1,58 @@
+import axios from 'axios'
+
+//https://www.ravelry.com/api#library_search
 export const GET_PROJECTS = 'user/projects/LOAD';
 export const GET_PROJECTS_SUCCESS = 'user/projects/LOAD_SUCCESS';
 export const GET_PROJECTS_FAIL = 'user/projects/LOAD_FAIL';
 
+//https://www.ravelry.com/api#Project_result
 export const GET_PROJECT_INFO = 'user/projects/INFO';
 export const GET_PROJECT_INFO_SUCCESS = 'user/projects/INFO_SUCCESS';
 export const GET_PROJECT_INFO_FAIL = 'user/projects/INFO_FAIL';
 
-export const GET_USER = 'user/projects/USER';
-export const GET_USER_SUCCESS = 'user/projects/USER_SUCCESS';
-export const GET_USER_FAIL = 'user/projects/USER_FAIL';
-
 const initialState = {
   projects: [],
   projectInfo: {},
-  user: {}
 };
 
-
-export function listProjects(user) {
+export function listProjects(userName) {
   return {
     type: GET_PROJECTS,
     payload: {
       request: {
-        url: `/users/${user}/projects`
+        url: `/projects/${userName}/list.json`
       }
     }
   };
 }
 
-export function getProjectDetail(user, project) {
+export function getProjectDetail(userName, projectId) {
   return {
     type: GET_PROJECT_INFO,
     payload: {
       request: {
-        url: `/projects/${user}/${project}`
+        url: `/projects/${userName}/${projectId}.json`
       }
     }
   };
 }
 
-export function getUser(user) {
-  return {
-    type: GET_USER,
-    payload: {
-      request: {
-        url: `/users/${user}`
-      }
-    }
-  };
+export const getAllProjectsThunk = (userName) => async dispatch => {
+  try {
+    const projects = await axios.get(`/api/${userName}/list.json`)
+    dispatch(listProjects(projects.data))
+  } catch (err) {
+    console.error(err)
+  }
+}
+
+export const getProjectThunk = (userName, projectId) => async dispatch => {
+  try {
+    const project = await axios.get(`/projects/${userName}/${projectId}.json`)
+    dispatch(getProjectDetail(project.data))
+  } catch (err) {
+    console.error(err)
+  }
 }
 
 export default function reducer(state = initialState, action) {
@@ -69,17 +74,6 @@ export default function reducer(state = initialState, action) {
         ...state,
         loadingInfo: false,
         errorInfo: 'Error getting project info'
-      };
-    case GET_USER:
-      return { ...state, loadingProfile: true };
-    case GET_USER_SUCCESS:
-      return { ...state, loadingProfile: false, user: action.payload.data };
-    case GET_USER_FAIL:
-      console.log(action.payload);
-      return {
-        ...state,
-        loadingProfile: false,
-        errorUser: 'Error getting user info'
       };
     default:
       return state;
