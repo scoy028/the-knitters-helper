@@ -14,7 +14,7 @@
   },
   "dependencies": {
     "@expo/samples": "2.1.1",
-    "expo": "^32.0.0",
+    "expo": "^46.0.14",
     "express": "^4.16.4",
     "express-session": "^1.15.6",
     "passport": "^0.4.0",
